@@ -15,6 +15,8 @@ var atEveryone   = require('./custom_commands/at-everyone.js');
 var funCommands  = require('./custom_commands/fun-commands.js');
 var quotes       = require('./custom_commands/quotes.js');
 
+var getweather   = require('./custom_commands/getweather.js')
+
 //load config
 var config       = require('./config/config.js');
 var HTTPS        = require('https');
