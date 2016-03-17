@@ -1,5 +1,8 @@
 var cmds = [getWeather];
 var HTTPS  = require('https');
+var wind = 0;
+var temp = 0;
+var sky = 'none';
 
 //exports
 exports.modName = "Get Weather";
@@ -14,7 +17,7 @@ exports.checkCommands = function(dataHash, callback) {
 
 exports.getCmdListDescription = function () {
   cmdArr = [
-    {cmd: "weather", desc: "reports temperature, wind, and cloudiness", mod: false}
+    {cmd: "weather", desc: "reports temperature, wind, and sky condition", mod: false}
   ];
 
   return cmdArr;
@@ -22,9 +25,8 @@ exports.getCmdListDescription = function () {
 
 function getWeather(){
   var regex = /^\/getweather$/i;
-  weather.temp
-  weather.units.temp
-  return
+  
+  return temp;
 }
 
 $(document).ready(function() {
@@ -32,13 +34,19 @@ $(document).ready(function() {
     location: 'State College, PA',
     woeid: '',
     unit: 'f',
+    
     success: function(weather) {
-      html = '<p>'+weather.temp+'&deg;'+weather.units.temp+'</p>';
-  
-      $("#weather").html(html);
+      //html = '<p>'+weather.temp+'&deg;'+weather.units.temp+'</p>';
+      wind = weather.wind.speed;
+      temp = weather.temp;
+      sky  = weather.currently;
+      
+    
+      //$("#weather").html(html);
     },
     error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
+      //$("#weather").html('<p>'+error+'</p>');
+      
     }
   });
 });
