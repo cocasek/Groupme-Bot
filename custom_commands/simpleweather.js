@@ -1,6 +1,35 @@
+var cmds = [getWeather];
+var HTTPS  = require('https');
+
+//exports
+exports.modName = "Get Weather";
+
+exports.checkCommands = function(dataHash, callback) {
+  for (cmd in cmds) {
+    var test = cmds[cmd](dataHash.request, dataHash.bots, callback);
+    if (test)
+      return test;
+  }
+}
+
+exports.getCmdListDescription = function () {
+  cmdArr = [
+    {cmd: "weather", desc: "reports temperature, wind, and cloudiness", mod: false}
+  ];
+
+  return cmdArr;
+}
+
+function getWeather(){
+  var regex = /^\/getweather$/i;
+  weather.temp
+  weather.units.temp
+  return
+}
+
 $(document).ready(function() {
   $.simpleWeather({
-    location: 'Austin, TX',
+    location: 'State College, PA',
     woeid: '',
     unit: 'f',
     success: function(weather) {
@@ -13,3 +42,5 @@ $(document).ready(function() {
     }
   });
 });
+
+//utilizes simpleweather.js (simpleweatherjs.com)
